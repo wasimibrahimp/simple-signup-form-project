@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { style } from '../App.css';
 
@@ -11,18 +12,16 @@ export default function Form() {
 
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: type === 'checkbox' ? checked : value,
-      };
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
   }
 
   function handleSubmit(event) {
     event.preventDefault();
     if (!formData.password) {
-      alert('Please enter password');
+      alert('Please enter a valid password');
     } else if (formData.password === formData.passwordConfirm) {
       alert('Successfully signed up');
     } else {
@@ -43,7 +42,7 @@ export default function Form() {
       <form className='form' onSubmit={handleSubmit}>
         <input
           type='email'
-          placeholder='Email address'
+          placeholder='Enter email address'
           className='form--input'
           id='email'
           name='email'
@@ -52,7 +51,7 @@ export default function Form() {
         ></input>
         <input
           type='password'
-          placeholder='Password'
+          placeholder='Enter password'
           className='form--input'
           id='password'
           name='password'
@@ -61,7 +60,7 @@ export default function Form() {
         ></input>
         <input
           type='password'
-          placeholder='Confirm password'
+          placeholder='Re-enter password'
           className='form--input'
           id='passwordConfirm'
           name='passwordConfirm'
